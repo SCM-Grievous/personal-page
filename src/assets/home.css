@@ -1,0 +1,3 @@
+body, footer, #connect {
+    transition: background-color 0.5s;
+}
