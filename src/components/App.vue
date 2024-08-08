@@ -43,7 +43,7 @@ const showAboutMe = ref(false)
                             <i v-else class="bi bi-chevron-up"></i>
                         </Transition>
                     </button>
-                    <p class="mb-2">or <a href="#" class="link-underline link-underline-opacity-0">view my
+                    <p class="mb-2">or <a href="#" class="link-underline link-underline-opacity-0 text-link">view my
                             resum&#233;</a></p>
                 </div>
             </div>
@@ -74,11 +74,11 @@ const showAboutMe = ref(false)
         </div>
     </div>
 
-    <div id="connect" class="bg-dark-subtle py-2 mt-4">
+    <div id="connect" class="row bg-dark-subtle py-2 mt-4 justify-content-center w-100">
         <h2 class="fw-bold text-center">
             Connect with me
         </h2>
-        <div class="row justify-content-center text-center">
+        <div class="row text-center">
             <p>
                 <a href="#" class="px-2 icon-link"><i class="bi bi-github"></i></a>
                 <a href="#" class="px-2 icon-link"><i class="bi bi-linkedin"></i></a>
@@ -95,7 +95,7 @@ const showAboutMe = ref(false)
             <p class="pb-2 w-75">
                 Here are some of my favorite projects I've worked on, both for my
                 computer science coursework and side projects. View the source code for these and other projects on my
-                <a class="link-underline link-underline-opacity-0"
+                <a class="link-underline link-underline-opacity-0 text-link"
                     href="https://github.com/SCM-Grievous?tab=repositories">GitHub</a>.
             </p>
         </div>
@@ -106,7 +106,7 @@ const showAboutMe = ref(false)
     <footer class="text-center bg-dark-subtle mt-3 py-3">
         <small>Created in 2024 by Nathan Moore.
         <br>Licensed under MIT.
-        <br><a class="link-underline link-underline-opacity-0" href="#">View source on GitHub</a>.</small>
+        <br><a class="link-underline link-underline-opacity-0 text-link" href="https://github.com/SCM-Grievous/personal-page" target="_blank">View source on GitHub</a>.</small>
     </footer>
 </template>
 
@@ -118,6 +118,27 @@ a {
 
 a:hover {
     color: rgba(138, 43, 226, 0.75);
+}
+
+.text-link {
+    position: relative;
+}
+
+.text-link::before {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: blueviolet;
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    transition: all 0.3s;
+}
+
+.text-link:hover::before {
+    left: 0;
+    width: 100%;
+    background-color: rgba(138, 43, 226, 0.75);
 }
 
 .btn {

@@ -12,7 +12,7 @@ import DarkModeSwitcher from './DarkModeSwitcher.vue'
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item px-2"><a class="nav-link px-2" href="#">Resum&#233;</a></li>
+                    <li class="nav-item"><a class="nav-link mx-2" href="#">Resum&#233;</a></li>
                     <li class="nav-item"><DarkModeSwitcher /></li>
                 </ul>
             </div>
@@ -28,5 +28,25 @@ import DarkModeSwitcher from './DarkModeSwitcher.vue'
 
 .navbar:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::before {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--bs-body-color);
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover::before {
+    left: 8px;
+    width: 80%;
 }
 </style>

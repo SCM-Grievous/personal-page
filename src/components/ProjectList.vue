@@ -29,7 +29,7 @@ const projects = ref([
 
 <template>
     <div v-for="project in projects" class="container-lg mb-3">
-        <div class="row">
+        <div class="row align-items-center">
             <div v-if="index % 2 !== 0" class="col-lg-6">
                 <h3>{{ project.name }}</h3>
                 <small>{{ project.subtitle }} &bull; {{ project.year }}</small>
