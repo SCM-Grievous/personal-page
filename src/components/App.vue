@@ -5,6 +5,20 @@ import ProjectList from './ProjectList.vue'
 import '../assets/main.css'
 
 const showAboutMe = ref(false)
+const aboutMeBgColor = ref('var(--bs-light-bg-subtle)')
+const heroControlsTop = ref('60%')
+
+function aboutMeClickEventHandler(e) {
+    showAboutMe.value = !showAboutMe.value
+
+    if (showAboutMe.value) {
+        aboutMeBgColor.value = 'transparent'
+        heroControlsTop.value = '100%'
+    } else {
+        aboutMeBgColor.value = 'var(--bs-light-bg-subtle)'
+        heroControlsTop.value = '60%'
+    }
+}
 
 </script>
 
@@ -12,28 +26,29 @@ const showAboutMe = ref(false)
     <Navbar />
 
     <div class="container-lg pt-4">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
+        <div class="row align-items-start">
+            <div id="hero-text" class="col-lg-6">
                 <Transition name="fade">
-                    <h1 v-if="!showAboutMe" class="fw-bold slide">Hero message</h1>
-                    <h1 v-else class="fw-bold slide">About me</h1>
+                    <h1 v-if="!showAboutMe" class="fw-bold">Hero message</h1>
+                    <h1 v-else class="fw-bold">About me</h1>
                 </Transition>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum.</p>
-                <Transition name="slide-fade">
-                    <p v-if="showAboutMe">
+                <div id="about-me">
+                    <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
                         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
-                </Transition>
-                <div class="container-lg text-center">
-                    <button @click="showAboutMe = !showAboutMe" class="btn">
+                    <div id="about-me-cover" :style="{ 'background-color': aboutMeBgColor }"></div>
+                </div>
+                <div id="hero-controls" class="container-lg text-center" :style="{ top: heroControlsTop }">
+                    <button @click="aboutMeClickEventHandler" class="btn">
                         <Transition name="button-fade">
                             <span v-if="!showAboutMe" class="pe-2">Read more</span>
                             <span v-else class="pe-2">Read less</span>
@@ -105,12 +120,36 @@ const showAboutMe = ref(false)
 
     <footer class="text-center bg-dark-subtle mt-3 py-3">
         <small>Created in 2024 by Nathan Moore.
-        <br>Licensed under MIT.
-        <br><a class="link-underline link-underline-opacity-0 text-link" href="https://github.com/SCM-Grievous/personal-page" target="_blank">View source on GitHub</a>.</small>
+            <br>Licensed under MIT.
+            <br><a class="link-underline link-underline-opacity-0 text-link"
+                href="https://github.com/SCM-Grievous/personal-page" target="_blank">View source on GitHub</a>.</small>
     </footer>
 </template>
 
 <style scoped>
+#about-me {
+    position: relative;
+}
+
+#about-me-cover {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s;
+}
+
+#hero-text {
+    position: relative;
+}
+
+#hero-controls {
+    position: absolute;
+    transition: top 0.7s ease-out;
+}
+
 a {
     color: blueviolet;
     transition: color 0.3s;
@@ -150,16 +189,20 @@ a:hover {
 }
 
 .slide-fade-enter-active,
-.fade-enter-active,
-.button-fade-enter-active {
+.fade-enter-active {
     transition: all 0.5s ease-out;
+}
+
+.button-fade-enter-active {
+    transition: all 1s;
 }
 
 .slide-fade-leave-active {
     transition: all 0.5s ease-in;
 }
 
-.fade-enter-from {
+.fade-enter-from,
+.fade-leave-to {
     transform: translateX(20px);
     opacity: 0;
 }
